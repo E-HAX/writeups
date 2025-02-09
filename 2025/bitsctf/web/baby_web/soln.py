@@ -16,7 +16,6 @@ pem_body = re.sub(r"-----.*?-----", "", pem_data, flags=re.DOTALL).strip()
 # Decode from Base64 to raw bytes (HMAC secret key)
 hmac_secret = base64.b64decode(pem_body)
 
-
 token = jwt.encode(
     {"username": "admin", "role": "admin", "iat": 1749015184}, 
     hmac_secret, 
