@@ -55,54 +55,41 @@ He had a repository containing a **video** explaining how to store data in chess
 
 I downloaded all necessary files and modified `decode.py` to extract the hidden data:
 
-```python
-from time import time
-from math import log2
-from chess import pgn, Board
-from util import get_pgn_games
-
-def decode(pgn_string: str, output_file_path: str):
-    start_time = time()
-    total_move_count = 0
-    games = get_pgn_games(pgn_string)
-    
-    with open(output_file_path, "wb") as output_file:
-        output_data = ""
-        
-        for game_index, game in enumerate(games):
-            chess_board = Board()
-            game_moves = list(game.mainline_moves())
-            total_move_count += len(game_moves)
-            
-            for move_index, move in enumerate(game_moves):
-                legal_move_ucis = [m.uci() for m in list(chess_board.generate_legal_moves())]
-                move_binary = bin(legal_move_ucis.index(move.uci()))[2:]
-                
-                if game_index == len(games) - 1 and move_index == len(game_moves) - 1:
-                    max_binary_length = min(int(log2(len(legal_move_ucis))), 8 - (len(output_data) % 8))
-                else:
-                    max_binary_length = int(log2(len(legal_move_ucis)))
-                
-                required_padding = max(0, max_binary_length - len(move_binary))
-                move_binary = ("0" * required_padding) + move_binary
-                chess_board.push_uci(move.uci())
-                output_data += move_binary
-                
-                if len(output_data) % 8 == 0:
-                    output_file.write(bytes([int(output_data[i * 8: i * 8 + 8], 2) for i in range(len(output_data) // 8)]))
-                    output_data = ""
-    
-    print(f"Successfully decoded PGN with {len(games)} game(s), {total_move_count} total move(s) ({round(time() - start_time, 3)} sec)")
-
-if __name__ == "__main__":
-    pgn_string = """ENTER PGN HERE"""
-    decode(pgn_string, "output.txt")
-```
-
-I entered **every PGN manually** and got these outputs:
+I also modified the decode.py a little for my ease
+I entered **every PGN manually** and got these outputs with the EVENT id's:
 
 ```
-BITSCTF{H0p3_y0u_h4d_A_gr8_J0urn3y_eheheheheheh!??_564A8E9D}
+�֪.@�-E�]��4x���L�r���y�h�#
+
+{{[�{q�+{�c);�3+��C+q�C+��+)�CK�!{��{{kKs9[��#���C{�)��++#�    Iq;�+�+q+;Kq�y#+��K)C{�3������Ks9�CK�K�q EVENT 9
+
+er. The car accelerates at a steady 10 mph,{BITSCTF{H0p3_y0u_h4d_A_gr8_J0urn3y_eheheheheheh!??_564A8E9D}} which may sound slow, but trust me, it's lightning fast in reverse. Just imagine th   EVENT 8
+
+���ͽ��ѕ�䁍Ʌ�丁    �Ё�Ё���́�ٕ�����  EVENT 7
+
+��ͅ�����ȸ�%Н́չ��������ѡ�����ԝٔ��ٕȁ͕����Q�����������%Ё���́���ɕٕ�͔��Ё�����ͅ�������������$����ܰ��Н� EVENT 6
+
+[��H[�H�^]    ���\�[���Z[���]H��\���\�\����^K��^K[�H�ۉ��[Y] �H\ˈH�\��[�\�Y�Z[[��\�  EVENT 5
+
+�����х�ѕ�����ѡ��ݕ�ѡ�ȸ�$�������������䁥Н   EVENT 4
+
+@��@�@����\@�����X@�����~@���@���N�@   EVENT 3
+
+�6���22�4������80��94���:7��)�2����3�7�80��94���40�2�<���2�2�:94��6����3�0�47�����2�0�862�84���$���9��6���12�:2�:40�9�7�2��7���:!:�$�24��2���,���5�7��$��2�12��;��22�4�3�60�2�<�;�<�:42��1��64�0��0��7�80�:9��;�2�<���7�6<�;���7�2 EVENT 2
+
+�Wr6�ffVR6��F�v�F�R7G&VWB�F�W��fR EVENT 1
+
+Hey, guess what? I just found this amaz EVENT 0
+
+�����х�ѕ�����ѡ��ݕ�ѡ�ȸ�$�������������䁥Н DEFENITELYSECRETSTUFFHERE
+
+@��@�@����\@�����X@�����~@���@���N�@ SCRTIDK
+
+�6���22�4������80��94���:7��)�2����3�7�80��94���40�2�<���2�2�:94��6����3�0�47�����2�0�862�84���$���9��6���12�:2�:40�9�7�2��7���:!:�$�24��2���,���5�7��$��2�12��;��22�4�3�60�2�<�;�<�:42��1��64�0��0��7�80�:9��;�2�<���7�6<�;���7�2 SCRT 3
+
+�Wr6�ffVR6��F�v�F�R7G&VWB�F�W��fR SCRT 2
+
+Hey, guess what? I just found this amaz SCRT 1
 ```
 
 ## Conclusion
