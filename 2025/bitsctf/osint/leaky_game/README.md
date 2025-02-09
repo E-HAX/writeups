@@ -16,13 +16,22 @@ So, I used the **advanced search option in Lichess**, but I didn't know:
 
 However, the challenge text mentioned that the game was *long*.
 
+Also,as the challenge description said,that the "board was conquered by white",that meant the winner color was white.
+
 For the date, I took the creation date of the given image: **5 February**. To avoid risks, I set the search date from **4–6 February** and time control from **1 hour to 3 hours**. I analyzed every game but didn't find anything.
 
-Then I realized that a game can be "big" in **number of turns** as well. So I analyzed around 300 games and finally found a game played by an account:
+Then I realized that a game can be "big" in **number of turns** as well.Then i tried setting the number of turns from 100 to 300. So I analyzed around 22 games:
+
+![account](screenshots//leaky_game.png)
+
+Finally found a game played by an account:
+![account](screenshots//leaky_2.png)
 
 [DocGoof52025126](https://lichess.org/@/DocGoof52025126)
 
-In his last game, at **move 53**, he was in the same position as in the given PNG. Also, his username resembled **Dr. Doof**.
+His username resembled **Dr. Heinz Doofenshmirtz**.
+
+In his last game, at **move 53**, he was in the same position as in the given PNG to us
 
 ## Step 2: Investigating the User
 
