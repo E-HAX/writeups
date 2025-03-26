@@ -31,8 +31,8 @@ A forensic challenge involving a multi-stage PowerShell attack related to Thorin
     ```
     3. Third Stage Payload
     ```
-    $a35 = "4854427b37683052314e5f4834355f346c573459355f3833336e5f344e5f39723334375f314e56336e3730727d"
-    ($a35-split"(..)"|?{$_}|%{[char][convert]::ToInt16($_,16)}) -join ""
+        $a35 = "4854427b37683052314e5f4834355f346c573459355f3833336e5f344e5f39723334375f314e56336e3730727d"
+        ($a35-split"(..)"|?{$_}|%{[char][convert]::ToInt16($_,16)}) -join ""
 
     ```
     4. HEX string analysis
