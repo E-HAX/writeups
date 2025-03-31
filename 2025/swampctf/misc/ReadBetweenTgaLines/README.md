@@ -10,6 +10,8 @@ We were given multiple image fragments in the **.tga format**.
 - Using **image editing tools** such as GIMP or Photoshop, I combined the image parts.
 - The complete image revealed the flag.
 
+![Swamp CTF Read Between .tga Lines writeup](./img.png)
+
 ### **Flag:**
 
 ```
